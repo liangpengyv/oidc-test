@@ -15,10 +15,37 @@ export default new Vuex.Store({
     oidcStore: vuexOidcCreateStoreModule(
       oidcSettings,
       {
-        namespaced: false,
+        namespaced: true,
         publicRoutePaths: [
           '/',
         ],
-      }),
+      },
+      {
+        userLoaded: (user) => {
+          console.log('OIDC 用户已加载', user)
+        },
+        userUnloaded: () => {
+          console.log('OIDC 用户已卸载')
+        },
+        accessTokenExpiring: () => {
+          console.log('OIDC 访问令牌即将过期')
+        },
+        accessTokenExpired: () => {
+          console.log('OIDC 访问令牌已经过期')
+        },
+        silentRenewError: () => {
+          console.log('OIDC 静默续订失败')
+        },
+        userSignedOut: () => {
+          console.log('OIDC 用户已注销')
+        },
+        oidcError: (payload) => {
+          console.log(`OIDC 发生错误`, payload)
+        },
+        automaticSilentRenewError: (payload) => {
+          console.log('OIDC 自动静默续订失败', payload)
+        },
+      },
+    ),
   },
 })

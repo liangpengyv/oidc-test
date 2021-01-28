@@ -8,9 +8,9 @@
   export default {
     name: 'SignInCallback',
     methods: {
-      ...mapActions([
-        'oidcSignInCallback',
-      ]),
+      ...mapActions('oidcStore', {
+        oidcSignInCallback: 'oidcSignInCallback'
+      }),
     },
     mounted() {
       this.oidcSignInCallback()
