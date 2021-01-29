@@ -13,10 +13,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "sign-in-callback" */ '../views/oidc/SignInCallback'),
   },
   {
-    path: '/oidc-silent-renew',
-    name: 'OidcSilentRenew',
-    component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
+    path: '/sign-out-callback',
+    name: 'SignOutCallback',
+    component: () => import(/* webpackChunkName: "sign-out-callback" */ '../views/oidc/SignOutCallback')
   },
+  // {
+  //   path: '/oidc-silent-renew',
+  //   name: 'OidcSilentRenew',
+  //   component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
+  // },
   {
     path: '/',
     name: 'Home',

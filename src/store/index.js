@@ -39,6 +39,7 @@ export default new Vuex.Store({
         userSignedOut: () => {
           console.log('OIDC 用户已注销')
         },
+        // oidcError 和 automaticSilentRenewError 事件不是来自于客户端，而是在客户端实现的
         oidcError: (payload) => {
           console.log(`OIDC 发生错误`, payload)
         },
