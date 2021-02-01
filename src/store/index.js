@@ -18,6 +18,7 @@ export default new Vuex.Store({
         namespaced: true,
         publicRoutePaths: [
           '/',
+          '/sign-in',
         ],
       },
       {

@@ -15,13 +15,18 @@ const routes = [
   {
     path: '/sign-out-callback',
     name: 'SignOutCallback',
-    component: () => import(/* webpackChunkName: "sign-out-callback" */ '../views/oidc/SignOutCallback')
+    component: () => import(/* webpackChunkName: "sign-out-callback" */ '../views/oidc/SignOutCallback'),
   },
   // {
   //   path: '/oidc-silent-renew',
   //   name: 'OidcSilentRenew',
   //   component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
   // },
+  {
+    path: '/sign-in',
+    name: 'SignIn',
+    component: () => import(/* webpackChunkName: "sign-in" */ '../views/SignIn'),
+  },
   {
     path: '/',
     name: 'Home',

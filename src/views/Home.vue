@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <p>这是一个开放访问的页面</p>
+    <button v-if="!oidcIsAuthenticated" @click="$router.push('/sign-in')">Sign In</button>
     <button v-if="oidcIsAuthenticated" @click="signOutOidc">Sign out</button>
-    <br />
+    <br/>
     <img alt="Vue logo" src="../assets/logo.png">
     <p v-if="oidcIsAuthenticated">这句话是登录后才会展示的受保护内容</p>
     <p>{{ $store.state.oidcStore.access_token }}</p>
