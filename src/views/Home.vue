@@ -8,11 +8,13 @@
     <p v-if="oidcIsAuthenticated">这句话是登录后才会展示的受保护内容</p>
     <p>{{ $store.state.oidcStore.access_token }}</p>
     <p v-if="oidcUser">{{ oidcUser }}</p>
+    <button @click="showForumInfo">获取我的社区基础信息</button>
   </div>
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
+  import myCommunityService from '../service/personal-center/my-community.service'
 
   export default {
     name: 'Home',
@@ -30,6 +32,16 @@
         authenticateOidc: 'authenticateOidc',
         signOutOidc: 'signOutOidc',
       }),
+      showForumInfo() {
+        myCommunityService.getForumInfo().then(response => {
+          console.log(response)
+          if (response.code === 200) {
+            this.$message.success('获取成功，' + response.message)
+          } else {
+            this.$message.error('获取失败，' + response.message)
+          }
+        })
+      },
     },
   }
 </script>
