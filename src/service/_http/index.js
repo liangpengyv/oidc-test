@@ -21,9 +21,9 @@ const handleResponseError = (response) => {
       case 401:
         app.$message.info('登录以进行进一步的操作！')
         setTimeout(() => {
-          window.localStorage.clear()
-          utility.setToken('')
-          mgr.signinRedirect()
+          // window.localStorage.clear()
+          // utility.setToken('')
+          // mgr.signinRedirect()
         }, 1000)
         break
 
@@ -31,9 +31,9 @@ const handleResponseError = (response) => {
       case 403:
         app.$message.warning('登录已过期，请您重新登录！')
         setTimeout(() => {
-          window.localStorage.clear()
-          utility.setToken('')
-          mgr.signinRedirect()
+          // window.localStorage.clear()
+          // utility.setToken('')
+          // mgr.signinRedirect()
         }, 1000)
         break
 

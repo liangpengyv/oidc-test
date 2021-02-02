@@ -23,11 +23,6 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
   // },
   {
-    path: '/sign-in',
-    name: 'SignIn',
-    component: () => import(/* webpackChunkName: "sign-in" */ '../views/SignIn'),
-  },
-  {
     path: '/',
     name: 'Home',
     component: Home,

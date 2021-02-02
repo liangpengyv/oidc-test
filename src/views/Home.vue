@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <p>这是一个开放访问的页面</p>
-    <button v-if="!oidcIsAuthenticated" @click="$router.push('/sign-in')">Sign In</button>
+    <button v-if="!oidcIsAuthenticated" @click="authenticateOidc">Sign In</button>
     <button v-if="oidcIsAuthenticated" @click="signOutOidc">Sign out</button>
     <br/>
     <img alt="Vue logo" src="../assets/logo.png">
@@ -27,6 +27,7 @@
     },
     methods: {
       ...mapActions('oidcStore', {
+        authenticateOidc: 'authenticateOidc',
         signOutOidc: 'signOutOidc',
       }),
     },
