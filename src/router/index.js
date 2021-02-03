@@ -26,6 +26,9 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: {
+      isPublic: true,
+    },
   },
   {
     path: '/about',

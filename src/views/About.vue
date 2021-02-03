@@ -2,7 +2,7 @@
   <div class="about">
     <h1>This is an about page</h1>
     <button v-if="!oidcIsAuthenticated" @click="authenticateOidc">Sign In</button>
-    <button v-if="oidcIsAuthenticated" @click="signOutOidc">Sign out</button>
+    <button v-if="oidcIsAuthenticated" @click="signOut">Sign out</button>
   </div>
 </template>
 
@@ -23,7 +23,13 @@
       ...mapActions('oidcStore', {
         authenticateOidc: 'authenticateOidc',
         signOutOidc: 'signOutOidc',
+        removeOidcUser: 'removeOidcUser',
       }),
+      signOut() {
+        this.removeOidcUser().then(() => {
+          console.log(this.$route)
+        })
+      },
     },
   }
 </script>

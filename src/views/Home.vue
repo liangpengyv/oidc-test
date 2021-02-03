@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <p>这是一个开放访问的页面</p>
-    <button v-if="!oidcIsAuthenticated" @click="authenticateOidc">Sign In</button>
-    <button v-if="oidcIsAuthenticated" @click="signOutOidc">Sign out</button>
+    <button v-if="!oidcIsAuthenticated" @click.prevent="authenticateOidc">Sign In</button>
+    <button v-if="oidcIsAuthenticated" @click.prevent="signOut">Sign out</button>
     <br/>
     <img alt="Vue logo" src="../assets/logo.png">
     <p v-if="oidcIsAuthenticated">这句话是登录后才会展示的受保护内容</p>
@@ -31,7 +31,13 @@
       ...mapActions('oidcStore', {
         authenticateOidc: 'authenticateOidc',
         signOutOidc: 'signOutOidc',
+        removeOidcUser: 'removeOidcUser',
       }),
+      signOut() {
+        this.removeOidcUser().then(() => {
+          this.$router.push('/') // ToDo 继续
+        })
+      },
       showForumInfo() {
         myCommunityService.getForumInfo().then(response => {
           console.log(response)
@@ -42,6 +48,9 @@
           }
         })
       },
+    },
+    mounted() {
+      console.log(this.$store)
     },
   }
 </script>
