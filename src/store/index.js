@@ -24,11 +24,9 @@ export default new Vuex.Store({
         userLoaded: (user) => {
           console.log('OIDC 用户已加载', user)
           utility.setToken(user.access_token)
-          console.log('token', utility.getToken())
         },
         userUnloaded: () => {
           console.log('OIDC 用户已卸载')
-          utility.setToken('')
           window.localStorage.clear()
           console.log('token', utility.getToken())
           console.log(store.getters)
@@ -48,10 +46,10 @@ export default new Vuex.Store({
         },
         userSignedOut: () => {
           console.log('OIDC 用户已注销')
-          utility.setToken('')
           window.localStorage.clear()
           console.log('token', utility.getToken())
           console.log(store.getters)
+          store.dispatch('oidcStore/removeOidcUser')
         },
         // oidcError 和 automaticSilentRenewError 事件不是来自于客户端，而是在客户端实现的
         oidcError: (payload) => {

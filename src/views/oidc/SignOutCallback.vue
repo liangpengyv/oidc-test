@@ -1,11 +1,11 @@
 <template>
-  <div></div>
+  <div>Sign Out Callback in authentication</div>
 </template>
 
 <script>
   export default {
     name: 'SignOutCallback',
-    mounted() {
+    beforeCreate() {
       this.$router.push('/')
     },
   }

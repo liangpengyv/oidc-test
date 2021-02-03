@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1 v-if="oidcIsAuthenticated">登录状态才能看到这句话</h1>
     <button v-if="!oidcIsAuthenticated" @click="authenticateOidc">Sign In</button>
     <button v-if="oidcIsAuthenticated" @click="signOut">Sign out</button>
   </div>
@@ -23,11 +23,13 @@
       ...mapActions('oidcStore', {
         authenticateOidc: 'authenticateOidc',
         signOutOidc: 'signOutOidc',
+        signOutOidcSilent: 'signOutOidcSilent',
         removeOidcUser: 'removeOidcUser',
       }),
       signOut() {
         this.removeOidcUser().then(() => {
-          console.log(this.$route)
+          this.signOutOidcSilent()
+          this.$router.go(0)
         })
       },
     },

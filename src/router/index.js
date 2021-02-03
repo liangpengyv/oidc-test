@@ -23,6 +23,11 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
   // },
   {
+    path: '/oidc-callback-error',
+    name: 'OidcCallbackError',
+    component: () => import(/* webpackChunkName: "oidc-callback-error" */ '../views/oidc/OidcCallbackError'),
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,

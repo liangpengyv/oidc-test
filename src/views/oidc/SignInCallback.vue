@@ -3,13 +3,20 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'SignInCallback',
+    computed: {
+      ...mapGetters('oidcStore', {
+        oidcIsAuthenticated: 'oidcIsAuthenticated',
+      }),
+    },
     methods: {
       ...mapActions('oidcStore', {
-        oidcSignInCallback: 'oidcSignInCallback'
+        oidcSignInCallback: 'oidcSignInCallback',
+        signOutOidcSilent: 'signOutOidcSilent',
+        removeOidcUser: 'removeOidcUser',
       }),
     },
     mounted() {
