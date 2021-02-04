@@ -7,7 +7,7 @@
 
   export default {
     name: 'OidcSilentRenew',
-    mounted() {
+    created() {
       vuexOidcProcessSilentSignInCallback()
     },
   }

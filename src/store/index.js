@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {vuexOidcCreateStoreModule} from 'vuex-oidc'
 import {oidcSettings} from '../config/oidc'
-import utility from '../config/utility'
-import store from '../store'
+import utility from '../utils/utility'
+import app from '../main'
 
 Vue.use(Vuex)
 
@@ -27,29 +27,25 @@ export default new Vuex.Store({
         },
         userUnloaded: () => {
           console.log('OIDC 用户已卸载')
-          window.localStorage.clear()
-          console.log('token', utility.getToken())
-          console.log(store.getters)
+          utility.setToken('')
         },
         accessTokenExpiring: () => {
           console.log('OIDC 访问令牌即将过期')
         },
         accessTokenExpired: () => {
           console.log('OIDC 访问令牌已经过期')
-          utility.setToken('')
-          window.localStorage.clear()
+          app.$store.dispatch('oidcStore/signOutOidcSilent')
         },
         silentRenewError: () => {
           console.log('OIDC 静默续订失败')
-          utility.setToken('')
-          window.localStorage.clear()
         },
         userSignedOut: () => {
           console.log('OIDC 用户已注销')
-          window.localStorage.clear()
-          console.log('token', utility.getToken())
-          console.log(store.getters)
-          store.dispatch('oidcStore/removeOidcUser')
+          app.$store.dispatch('oidcStore/removeOidcUser').then(() => {
+            if (!app.$route.meta.isPublic) {
+              app.$router.go(0)
+            }
+          })
         },
         // oidcError 和 automaticSilentRenewError 事件不是来自于客户端，而是在客户端实现的
         oidcError: (payload) => {

@@ -1,12 +1,8 @@
 import axios from 'axios'
-import utility from '../../config/utility'
+import utility from '../../utils/utility'
 import app from '../../main'
-import oidc from 'oidc-client'
-import {oidcSettings} from '../../config/oidc'
 
 let instance = axios.create({})
-
-let mgr = new oidc.UserManager(oidcSettings)
 
 // 处理 HTTP 响应错误
 const handleResponseError = (response) => {
@@ -21,9 +17,7 @@ const handleResponseError = (response) => {
       case 401:
         app.$message.info('登录以进行进一步的操作！')
         setTimeout(() => {
-          // window.localStorage.clear()
-          // utility.setToken('')
-          // mgr.signinRedirect()
+          app.$store.dispatch('oidcStore/authenticateOidc').then()
         }, 1000)
         break
 
@@ -31,9 +25,7 @@ const handleResponseError = (response) => {
       case 403:
         app.$message.warning('登录已过期，请您重新登录！')
         setTimeout(() => {
-          // window.localStorage.clear()
-          // utility.setToken('')
-          // mgr.signinRedirect()
+          app.$store.dispatch('oidcStore/authenticateOidc').then()
         }, 1000)
         break
 

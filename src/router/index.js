@@ -17,11 +17,11 @@ const routes = [
     name: 'SignOutCallback',
     component: () => import(/* webpackChunkName: "sign-out-callback" */ '../views/oidc/SignOutCallback'),
   },
-  // {
-  //   path: '/oidc-silent-renew',
-  //   name: 'OidcSilentRenew',
-  //   component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
-  // },
+  {
+    path: '/oidc-silent-renew',
+    name: 'OidcSilentRenew',
+    component: () => import(/* webpackChunkName: "oidc-silent-renew" */ '../views/oidc/OidcSilentRenew'),
+  },
   {
     path: '/oidc-callback-error',
     name: 'OidcCallbackError',

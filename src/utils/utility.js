@@ -5,9 +5,8 @@ const utility = {
     localStorage.setItem(TOKEN_KEY, token)
   },
   getToken: () => {
-    return localStorage.getItem(TOKEN_KEY)
-      ? localStorage.getItem(TOKEN_KEY)
-      : ''
+    const token = localStorage.getItem(TOKEN_KEY)
+    return token ? token : ''
   },
 }
 

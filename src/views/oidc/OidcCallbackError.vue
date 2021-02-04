@@ -6,7 +6,7 @@
   export default {
     name: 'OidcCallbackError',
     created() {
-      // this.$router.push('/')
+      this.$router.push('/')
     },
   }
 </script>

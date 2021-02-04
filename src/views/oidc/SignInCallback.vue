@@ -19,7 +19,7 @@
         removeOidcUser: 'removeOidcUser',
       }),
     },
-    mounted() {
+    created() {
       this.oidcSignInCallback()
         .then((redirectPath) => {
           this.$router.push(redirectPath)
